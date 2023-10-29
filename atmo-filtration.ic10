@@ -1,0 +1,14 @@
+alias Self db
+alias Tank d0
+
+define MaxPressure 6000
+define DesiredRatio 0.5
+
+loop:
+	l r1 Tank Pressure
+	div r2 r1 MaxPressure
+	slt r3 r2 DesiredRatio
+	s Self Mode r3
+	
+	yield
+j loop
