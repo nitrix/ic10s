@@ -1,0 +1,50 @@
+alias AutomationModule d0
+alias SalvageModule d1
+alias FuelTank d2
+alias LaunchButton d3
+
+define MinFuelMol 700
+
+define MODE_IDLE_PAD 0
+define MODE_LAUNCHING 1
+define MODE_TRAVELING 2
+define MODE_ARRIVING 3
+define MODE_IDLE_SPACE 4
+define MODE_RETURNING 5
+define MODE_RETURNED 6
+define MODE_OUT_OF_FUEL 7
+
+loop:
+	yield
+	
+	l r0 AutomationModule Mode
+	beq r0 MODE_IDLE_PAD doIdle
+	beq r0 MODE_IDLE_SPACE doIdleSpace
+j loop
+
+doIdle:
+	l r0 LaunchButton Setting
+	beq r0 1 doLaunch
+j loop
+
+doLaunch:
+	s AutomationModule Activate MODE_LAUNCHING
+j loop
+
+doIdleSpace:
+	l r0 FuelTank Quantity
+	blt r0 MinFuelMol doReturn
+
+	l r0 AutomationModule CollectableGoods
+	s SalvageModule Activate r0
+	beq r0 0 doTravel
+j loop
+
+doTravel:
+	s AutomationModule Activate MODE_LAUNCHING
+	s AutomationModule Activate MODE_TRAVELING
+j loop
+
+doReturn:
+	s AutomationModule Activate MODE_RETURNING
+j loop

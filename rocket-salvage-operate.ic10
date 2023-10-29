@@ -1,0 +1,9 @@
+alias SiloModule d0
+alias DropLever d1
+
+loop:
+	yield
+
+	l r0 DropLever Setting
+	s SiloModule Open r0
+j loop
