@@ -1,6 +1,5 @@
 alias AutomationModule d0
 alias SalvageModule d1
-alias FuelTank d2
 
 define MinFuelMol 700
 
@@ -20,7 +19,7 @@ loop:
 j loop
 
 doIdleSpace:
-	l r0 FuelTank Quantity
+	l r0 AutomationModule Fuel
 	blt r0 MinFuelMol doReturn
 
 	l r0 AutomationModule CollectableGoods

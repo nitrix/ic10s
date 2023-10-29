@@ -1,5 +1,5 @@
-alias Rocket d0
-alias Silo d1
+alias AutomationModule d0
+alias SiloModule d1
 alias FuelDisplay d2
 alias ModeDisplay d3
 alias MinablesDisplay d4
@@ -8,15 +8,15 @@ alias GoodsDisplay d5
 loop:
 	yield
 
-	l r0 Rocket Fuel
+	l r0 AutomationModule Fuel
 	s FuelDisplay Setting r0
 
-	l r0 Rocket Mode
+	l r0 AutomationModule Mode
 	s ModeDisplay Setting r0
 
-	l r0 Rocket CollectableGoods
+	l r0 AutomationModule CollectableGoods
 	s MinablesDisplay Setting r0
 
-	l r0 Silo Quantity
+	l r0 SiloModule Quantity
 	s GoodsDisplay Setting r0
 j loop
