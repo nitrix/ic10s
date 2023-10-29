@@ -1,0 +1,30 @@
+alias FuelTank d0
+alias FuelMixer d1
+alias WaterTank d2
+alias CombFuelPump d3
+
+define CoolingTemperature 423.15
+define FuelTankCapacity 6000
+define FuelTankRatio 0.1
+define WaterTankCapacity 6000
+define WaterTankRatio 0.1
+
+Loop:
+    jal DoFuelMixing
+    jal DoWaterMaking
+    yield
+j Loop
+
+DoFuelMixing:
+    l r1 FuelTank Pressure
+    div r2 r1 FuelTankCapacity
+    slt r3 r2 FuelTankRatio
+    s FuelMixer On r3
+j ra
+
+DoWaterMaking:
+    l r1 WaterTank VolumeOfLiquid
+    div r2 r1 WaterTankCapacity
+    slt r3 r2 WaterTankRatio
+    s CombFuelPump On r3
+j ra
