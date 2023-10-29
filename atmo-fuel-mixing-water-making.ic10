@@ -9,20 +9,20 @@ define FuelTankRatio 0.1
 define WaterTankCapacity 6000
 define WaterTankRatio 0.1
 
-Loop:
-    jal DoFuelMixing
-    jal DoWaterMaking
+loop:
+    jal doFuelMixing
+    jal doWaterMaking
     yield
-j Loop
+j loop
 
-DoFuelMixing:
+doFuelMixing:
     l r1 FuelTank Pressure
     div r2 r1 FuelTankCapacity
     slt r3 r2 FuelTankRatio
     s FuelMixer On r3
 j ra
 
-DoWaterMaking:
+doWaterMaking:
     l r1 WaterTank VolumeOfLiquid
     div r2 r1 WaterTankCapacity
     slt r3 r2 WaterTankRatio
