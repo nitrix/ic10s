@@ -1,9 +1,18 @@
-alias SiloModule d0
-alias DropLever d1
+alias AutomationModule d0
+alias SiloModule d1
+alias LaunchButton d2
+alias DropLever d3
 
 loop:
 	yield
 
+	l r0 LaunchButton Setting
+	beq r0 1 doLaunch
+
 	l r0 DropLever Setting
 	s SiloModule Open r0
+j loop
+
+doLaunch:
+	s AutomationModule Activate 1
 j loop

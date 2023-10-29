@@ -1,7 +1,6 @@
 alias AutomationModule d0
 alias SalvageModule d1
 alias FuelTank d2
-alias LaunchButton d3
 
 define MinFuelMol 700
 
@@ -12,23 +11,12 @@ define MODE_ARRIVING 3
 define MODE_IDLE_SPACE 4
 define MODE_RETURNING 5
 define MODE_RETURNED 6
-define MODE_OUT_OF_FUEL 7
 
 loop:
 	yield
 	
 	l r0 AutomationModule Mode
-	beq r0 MODE_IDLE_PAD doIdle
 	beq r0 MODE_IDLE_SPACE doIdleSpace
-j loop
-
-doIdle:
-	l r0 LaunchButton Setting
-	beq r0 1 doLaunch
-j loop
-
-doLaunch:
-	s AutomationModule Activate MODE_LAUNCHING
 j loop
 
 doIdleSpace:
@@ -41,10 +29,10 @@ doIdleSpace:
 j loop
 
 doTravel:
-	s AutomationModule Activate MODE_LAUNCHING
-	s AutomationModule Activate MODE_TRAVELING
+	s AutomationModule Activate 1
+	s AutomationModule Activate 2
 j loop
 
 doReturn:
-	s AutomationModule Activate MODE_RETURNING
+	s AutomationModule Activate 5
 j loop
