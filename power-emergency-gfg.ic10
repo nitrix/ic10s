@@ -1,0 +1,21 @@
+alias GFG d0
+alias Battery d1
+
+define MinRatio 0.1
+define MaxRatio 0.2
+
+loop:
+    yield
+
+    l r0 Battery Ratio
+    blt r0 MinRatio turnOn
+    bgt r0 MaxRatio turnOff
+j loop
+
+turnOn:
+    s GFG On 1
+    j loop
+
+turnOff:
+    s GFG On 0
+    j loop

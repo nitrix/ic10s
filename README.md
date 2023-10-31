@@ -9,6 +9,8 @@ A collection of scripts for Stationeer's programmable IC10 chip.
 * Atmospherics
     * [Filtration](atmo-filtration.ic10)
     * [Fuel mixing + water making](atmo-fuel-mixing-water-making.ic10)
+* Power
+    * [Emergency Gas Fuel Generator](power-emergency-gfg.ic10)
 * Rocketry
     * [Salvage Rocket (operate)](rocket-salvage-operatoe.ic10)
     * [Salvage Rocket (flight)](rocket-salvage-flight.ic10)
